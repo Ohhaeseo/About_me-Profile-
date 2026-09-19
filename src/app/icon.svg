@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- OH 모노그램 — 16px에서도 뭉개지지 않게 글꼴 대신 도형으로 그렸다. 배경은 사이트 공통 틸(design.md 2절) -->
+  <rect width="64" height="64" rx="14" fill="#0E7C86"/>
+  <circle cx="20" cy="32" r="10" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  <path fill="#FFFFFF" d="M38 19h6v10h7V19h6v26h-6V35h-7v10h-6z"/>
+</svg>
