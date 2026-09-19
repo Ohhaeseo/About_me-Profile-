@@ -1,0 +1,515 @@
+@import "tailwindcss";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@import "wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css";
+
+/* ──────────────────────────────────────────────────────────────
+   design.md 2·3·5절 — 토큰 단일 정의부.
+   컴포넌트에서 hex/px/초를 직접 쓰지 않는다.
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  /* 표면 */
+  --color-base:        #F6F7F9;
+  --color-panel:       #FFFFFF;
+  --color-panel-sunk:  #F2F4F7;
+
+  /* 텍스트 */
+  --color-ink:         #101A2C;
+  --color-ink-soft:    #1A2B4A;
+  --color-text-sub:    #586173;
+  --color-text-faint:  #8A93A3;
+
+  /* 선 */
+  --color-line:        #DCE1E9;
+  --color-line-strong: #C3CAD6;
+
+  /* 액센트 — 이 사이트에서 유일하게 채도가 있는 색 */
+  --color-accent:      #0E7C86;
+  --color-accent-soft: #E6F4F5;
+  --color-accent-deep: #0A5A62;   /* accent-soft 위에 얹는 텍스트색 */
+  --color-on-accent:    #FFFFFF;  /* accent 배경 위 텍스트색 */
+  --color-accent-hover: #0A5A62;  /* accent 버튼 hover 배경 */
+
+  /* 그림자 — 잉크색 기반 저투명도 (design.md 2.1) */
+  --shadow-soft:  0 10px 30px #101A2C0F;
+  --shadow-frame: 0 18px 44px #101A2C14;
+  --shadow-nav:   0 8px 24px #101A2C1A;
+
+  /* 폰트 3종 역할 분리 (design.md 3.1) */
+  --font-sans:    "Pretendard Variable", Pretendard, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-space-grotesk), "Pretendard Variable", sans-serif;
+  /* 한글 디스플레이 — 큰 제목과 이름에만. 본문은 Pretendard가 맡는다 */
+  --font-display-ko: "Wanted Sans Variable", "Pretendard Variable", sans-serif;
+  --font-mono:    var(--font-ibm-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* 타입 스케일 (design.md 3.2) — 한글 트래킹 규칙을 스케일에 내장 */
+  --text-hero: clamp(56px, 9vw, 132px);
+  --text-hero--line-height: 1.05;
+  --text-hero--letter-spacing: -0.03em;
+  --text-hero--font-weight: 800;
+
+  /* 히어로 이름 — 3글자라 크게 써도 한 줄에 들어간다 */
+  --text-name: clamp(64px, 10.5vw, 164px);
+  --text-name--line-height: 0.96;
+  --text-name--letter-spacing: -0.045em;
+  --text-name--font-weight: 800;
+
+  /* 히어로 영문 직함 — 이름 위에 작게 */
+  --text-hero-role: clamp(15px, 1.5vw, 21px);
+  --text-hero-role--line-height: 1.2;
+  --text-hero-role--letter-spacing: 0.22em;
+  --text-hero-role--font-weight: 600;
+
+  /* 2단 히어로용 — 텍스트가 컨테이너 절반만 쓰므로 뷰포트 기준 9vw는 과하다 */
+  --text-hero-split: clamp(40px, 5.6vw, 84px);
+  --text-hero-split--line-height: 1.08;
+  --text-hero-split--letter-spacing: -0.03em;
+  --text-hero-split--font-weight: 800;
+
+  --text-h1: clamp(38px, 4.8vw, 68px);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.03em;
+  --text-h1--font-weight: 700;
+
+  --text-h2: clamp(27px, 3.3vw, 46px);
+  --text-h2--line-height: 1.3;
+  --text-h2--letter-spacing: -0.03em;
+  --text-h2--font-weight: 700;
+
+  /* 문장형 섹션 제목 — h2는 한 문장을 담기엔 과하게 크다 */
+  --text-h2-compact: clamp(24px, 2.8vw, 38px);
+  --text-h2-compact--line-height: 1.34;
+  --text-h2-compact--letter-spacing: -0.03em;
+  --text-h2-compact--font-weight: 700;
+
+  --text-h3: clamp(22px, 2.4vw, 30px);
+  --text-h3--line-height: 1.35;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 600;
+
+  --text-body: 17px;
+  --text-body--line-height: 1.75;
+  --text-body--letter-spacing: -0.01em;
+
+  --text-sm: 14px;
+  --text-sm--line-height: 1.7;
+  --text-sm--letter-spacing: -0.01em;
+
+  --text-label: 12px;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.4em;
+  --text-label--font-weight: 600;
+
+  /* 모션 (design.md 5절) */
+  --motion-fast: 0.16s;
+  --motion-base: 0.28s;
+  --motion-slow: 0.6s;
+  --motion-room: 0.9s;
+
+  --ease-default: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-quint:   cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* 카드 반경 — R1/R3 공통 14px (design.md 4절) */
+  --radius-card: 14px;
+
+  --animate-caret: caret-blink 1s infinite;
+
+  @keyframes caret-blink {
+    0%   { opacity: 0; }
+    50%  { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   다크 모드 (design.md 2.1)
+   시스템 설정을 따르되 사용자가 고른 data-theme이 이긴다.
+   색 이름의 의미는 그대로 두고 값만 바꾼다.
+   ────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-base:        #0D1117;
+    --color-panel:       #151B24;
+    --color-panel-sunk:  #10161E;
+
+    --color-ink:         #E8ECF2;
+    --color-ink-soft:    #C3CBD8;
+    --color-text-sub:    #A3AEBF;
+    --color-text-faint:  #6B7687;
+
+    --color-line:        #232B36;
+    --color-line-strong: #38434F;
+
+    --color-accent:       #3FBDC7;
+    --color-accent-soft:  #10323A;
+    --color-accent-deep:  #9FE5EC;
+    --color-on-accent:    #06222A;
+    --color-accent-hover: #6FD3DB;
+
+    --shadow-soft:  0 10px 30px #00000059;
+    --shadow-frame: 0 18px 44px #00000066;
+    --shadow-nav:   0 8px 24px #00000073;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-base:        #0D1117;
+  --color-panel:       #151B24;
+  --color-panel-sunk:  #10161E;
+
+  --color-ink:         #E8ECF2;
+  --color-ink-soft:    #C3CBD8;
+  --color-text-sub:    #A3AEBF;
+  --color-text-faint:  #6B7687;
+
+  --color-line:        #232B36;
+  --color-line-strong: #38434F;
+
+  --color-accent:       #3FBDC7;
+  --color-accent-soft:  #10323A;
+  --color-accent-deep:  #9FE5EC;
+  --color-on-accent:    #06222A;
+  --color-accent-hover: #6FD3DB;
+
+  --shadow-soft:  0 10px 30px #00000059;
+  --shadow-frame: 0 18px 44px #00000066;
+  --shadow-nav:   0 8px 24px #00000073;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* 플로팅 네비가 앵커 착지점을 가리지 않도록 */
+    scroll-padding-bottom: 120px;
+  }
+
+  body {
+    background-color: var(--color-base);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.75;
+    /* 한글은 어절 단위로 끊는다 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    /* 플로팅 네비 자리 확보 (design.md 9절) */
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-accent-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ── 레이아웃 유틸 (design.md 4절) ───────────────────────────── */
+@utility shell {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 80px);
+}
+
+@utility section-y {
+  padding-block: clamp(96px, 12vw, 180px);
+}
+
+/* 12px 대문자 라벨 — 영문 전용 (design.md 3.2 한글 트래킹 규칙) */
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+}
+
+/* ── 한 화면 단위 섹션 ────────────────────────────────────────
+   내용이 위아래로 잘려 보이지 않도록 최소 한 화면을 차지하고 세로 중앙에 둔다.
+   100svh를 쓰는 이유는 모바일 주소창이 접혔다 펴져도 잘리지 않게 하기 위함. */
+@utility section-fit {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(52px, 6.5vh, 104px);
+}
+
+/* 한글 소형 라벨 — eyebrow의 0.4em 자간은 영문 대문자 전용이다 (design.md 3.2) */
+@utility label-ko {
+  font-size: var(--text-label);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* ── 스크롤 등장 (design.md 6.5) ─────────────────────────────── */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition-property: opacity, transform;
+  transition-duration: var(--motion-slow);
+  transition-timing-function: var(--ease-default);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 글자 3D 플립 면 (design.md 6.2.1) ───────────────────────
+   inline 박스에는 backface-visibility가 적용되지 않는다.
+   block으로 만들지 않으면 회전 중 앞뒤가 겹쳐 보이며 글자가 깨진다. */
+@utility flip-face {
+  display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ── 텍스트 링크 밑줄 스윕 (design.md 6.2) ───────────────────── */
+@utility link-sweep {
+  position: relative;
+  transition-property: color;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-default);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition-property: transform;
+    transition-duration: var(--motion-base);
+    transition-timing-function: var(--ease-default);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+}
+
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── 모션 전면 차단 (design.md 5.1) ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* 등장 애니메이션은 완성 상태로 즉시 고정 */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   프로젝트별 액센트 (design.md 2.2)
+   상세 페이지와 카드에 data-project를 주면 그 안의 액센트 토큰만 갈아끼운다.
+   토큰 이름과 의미는 그대로라서 컴포넌트는 손댈 필요가 없다.
+   ────────────────────────────────────────────────────────────── */
+[data-project="pulse"] {
+  --color-accent:       #4F46E5;
+  --color-accent-soft:  #ECEBFC;
+  --color-accent-deep:  #3730A3;
+  --color-on-accent:    #FFFFFF;
+  --color-accent-hover: #3730A3;
+}
+[data-project="go"] {
+  --color-accent:       #047857;
+  --color-accent-soft:  #E3F5EE;
+  --color-accent-deep:  #065F46;
+  --color-on-accent:    #FFFFFF;
+  --color-accent-hover: #065F46;
+}
+[data-project="vr-live"] {
+  --color-accent:       #7C3AED;
+  --color-accent-soft:  #F1E9FE;
+  --color-accent-deep:  #5B21B6;
+  --color-on-accent:    #FFFFFF;
+  --color-accent-hover: #5B21B6;
+}
+[data-project="dspy-ad"] {
+  --color-accent:       #B45309;
+  --color-accent-soft:  #FCEFE0;
+  --color-accent-deep:  #7C3D06;
+  --color-on-accent:    #FFFFFF;
+  --color-accent-hover: #7C3D06;
+}
+[data-project="nullnull"] {
+  --color-accent:       #0369A1;
+  --color-accent-soft:  #E2F1FA;
+  --color-accent-deep:  #024B73;
+  --color-on-accent:    #FFFFFF;
+  --color-accent-hover: #024B73;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-project="pulse"] {
+    --color-accent: #8B87F5; --color-accent-soft: #23204A; --color-accent-deep: #CFCDFB;
+    --color-on-accent: #16143A; --color-accent-hover: #ADAAF8;
+  }
+  :root:not([data-theme="light"]) [data-project="go"] {
+    --color-accent: #4FD1A5; --color-accent-soft: #0F2E25; --color-accent-deep: #BDEFDC;
+    --color-on-accent: #06241B; --color-accent-hover: #86E0C2;
+  }
+  :root:not([data-theme="light"]) [data-project="vr-live"] {
+    --color-accent: #A78BFA; --color-accent-soft: #2A1F49; --color-accent-deep: #DDD1FE;
+    --color-on-accent: #1B1033; --color-accent-hover: #C4B2FC;
+  }
+  :root:not([data-theme="light"]) [data-project="dspy-ad"] {
+    --color-accent: #F0A868; --color-accent-soft: #3A2410; --color-accent-deep: #FBD9B5;
+    --color-on-accent: #2A1806; --color-accent-hover: #F5C193;
+  }
+  :root:not([data-theme="light"]) [data-project="nullnull"] {
+    --color-accent: #58B6E8; --color-accent-soft: #10293A; --color-accent-deep: #BEE2F6;
+    --color-on-accent: #071C29; --color-accent-hover: #8BCDF0;
+  }
+}
+
+:root[data-theme="dark"] [data-project="pulse"] {
+  --color-accent: #8B87F5; --color-accent-soft: #23204A; --color-accent-deep: #CFCDFB;
+  --color-on-accent: #16143A; --color-accent-hover: #ADAAF8;
+}
+:root[data-theme="dark"] [data-project="go"] {
+  --color-accent: #4FD1A5; --color-accent-soft: #0F2E25; --color-accent-deep: #BDEFDC;
+  --color-on-accent: #06241B; --color-accent-hover: #86E0C2;
+}
+:root[data-theme="dark"] [data-project="vr-live"] {
+  --color-accent: #A78BFA; --color-accent-soft: #2A1F49; --color-accent-deep: #DDD1FE;
+  --color-on-accent: #1B1033; --color-accent-hover: #C4B2FC;
+}
+:root[data-theme="dark"] [data-project="dspy-ad"] {
+  --color-accent: #F0A868; --color-accent-soft: #3A2410; --color-accent-deep: #FBD9B5;
+  --color-on-accent: #2A1806; --color-accent-hover: #F5C193;
+}
+:root[data-theme="dark"] [data-project="nullnull"] {
+  --color-accent: #58B6E8; --color-accent-soft: #10293A; --color-accent-deep: #BEE2F6;
+  --color-on-accent: #071C29; --color-accent-hover: #8BCDF0;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   페이지 전환 — 상세 페이지로 들어갈 때 아래에서 떠오르며 나타난다.
+   클라이언트 네비게이션 시 컴포넌트가 다시 마운트되므로 CSS 애니메이션만으로 충분하다.
+   prefers-reduced-motion에서는 5.1의 전역 규칙이 지속시간을 0으로 만든다.
+   ────────────────────────────────────────────────────────────── */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bar-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility page-enter {
+  animation: page-enter var(--motion-room) var(--ease-default) both;
+}
+
+@utility bar-enter {
+  animation: bar-enter var(--motion-base) var(--ease-default) both;
+}
+
+/* 눌렀을 때의 반응 — hover만 있고 active가 없으면 클릭이 먹통처럼 느껴진다 */
+@utility press {
+  transition-property: transform, box-shadow, background-color, border-color, color;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-default);
+
+  &:active {
+    transform: translateY(1px) scale(0.99);
+  }
+}
+
+/* ── 프로젝트 색 커튼 전환 ─────────────────────────────────────
+   아래에서 올라와 덮고(cover), 라우팅이 끝나면 위로 빠져나간다(reveal). */
+@keyframes curtain-cover {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes curtain-reveal {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.curtain-cover {
+  animation: curtain-cover 0.42s var(--ease-default) both;
+}
+
+.curtain-reveal {
+  animation: curtain-reveal 0.52s var(--ease-default) both;
+}
+
+/* ── 명함 (Contact) ───────────────────────────────────────────
+   design.md 6.2의 "scale 1.02 / rotate 1deg" 상한은 카드·이미지 hover 규칙이다.
+   명함은 사용자가 요청한 의도적 예외로, 이 섹션에서만 크게 움직인다. */
+@keyframes card-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(52px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility card-arrive {
+  animation: card-arrive var(--motion-room) var(--ease-default) both;
+}
