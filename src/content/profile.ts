@@ -3,6 +3,8 @@
 export const profile = {
   name: "오해서",
   nameEn: "OH HAESEO",
+  /** 대표 주소 — Vercel에서 루트는 www로 308 리다이렉트된다 */
+  siteUrl: "https://www.ohhaeseo.shop",
   role: "Backend AI Engineer",
   /** 히어로 — 위에 영문 직함(작게), 아래에 이름(크게) */
   heroRole: "Backend AI Engineer",

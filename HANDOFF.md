@@ -9,6 +9,8 @@
 
 - **위치**: `C:\About_me`
 - **스택**: Next.js 16.3.2 (App Router, Turbopack) · React 19 · Tailwind v4 (`@theme` 토큰, config 파일 없음) · TypeScript strict
+- **배포**: Vercel(Hobby) · `main` 푸시 시 자동 재배포 · 대표 주소 **https://www.ohhaeseo.shop** (루트는 www로 308). 가비아 DNS: `A @ 216.198.79.1`, `CNAME www d2386b60d3a0dc9e.vercel-dns-017.com.`
+  사이트 주소는 `profile.siteUrl` 한 곳에만 둔다 (metadataBase · robots · sitemap이 참조)
 - **git**: 2026-09-20 초기 커밋, 원격 `https://github.com/Ohhaeseo/About_me-Profile-.git` (`main`). `public/`이 약 100MB(영상 45MB)라 클론이 무겁다
 - **상태**: 빌드 통과 · 정적 페이지 9개 · 프로덕션 콘솔 에러 0건
 - **참고 원본**: `C:\OH_profile` (이전 포트폴리오, 프로필·이미지 출처) — 읽기 전용으로만 사용

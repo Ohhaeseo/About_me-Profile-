@@ -23,6 +23,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  // 공유 미리보기(og:image)와 canonical이 절대 주소로 풀리려면 기준 주소가 있어야 한다
+  metadataBase: new URL(profile.siteUrl),
+  alternates: { canonical: "/" },
   title: `${profile.name} · ${profile.role}`,
   description: profile.intro,
   keywords: ["백엔드", "Spring Boot", "FastAPI", "AI", "포트폴리오", profile.name],
@@ -30,6 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
+    url: "/",
     title: `${profile.name} · ${profile.role}`,
     description: profile.intro,
     siteName: `${profile.nameEn} Portfolio`,

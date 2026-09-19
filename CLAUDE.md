@@ -16,7 +16,7 @@
 | 스타일 | Tailwind CSS 4.3.3 (`@theme` 토큰 방식, config 파일 없음) |
 | 언어 | TypeScript 5.9 (strict) |
 | 경로 별칭 | `@/*` → `src/*` |
-| 배포 | 미정 (로컬 우선) |
+| 배포 | Vercel · https://www.ohhaeseo.shop (`main` 푸시 시 자동 배포) |
 
 ## 명령어
 
